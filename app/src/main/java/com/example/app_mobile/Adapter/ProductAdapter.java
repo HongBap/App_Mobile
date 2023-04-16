@@ -14,7 +14,6 @@ import com.bumptech.glide.Glide;
 import com.example.app_mobile.Model.Product;
 import com.example.app_mobile.R;
 
-
 import java.text.DecimalFormat;
 import java.util.List;
 
@@ -40,7 +39,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         Product product = productList.get(position);
         holder.catepname.setText(product.getProductName());
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-        holder.cateprice.setText("Giá: " + decimalFormat.format(Double.parseDouble(String.valueOf(product.getProductPrice()))) + "$");
+        holder.cateprice.setText("Price: " + decimalFormat.format(Double.parseDouble(String.valueOf(product.getProductPrice()))) + "$");
         if (product.getImageUrls().size() != 0)
             Glide.with(context)
                     .load(product.getImageUrls().get(0))
@@ -53,15 +52,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                }
            }
        });
-
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (mItemClickListener != null) {
-//                    mItemClickListener.onItemClick(position);
-//                }
-//            }
-//        });
     }
 
     @Override
@@ -85,68 +75,4 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     public void setOnItemClickListener(OnItemClickListener listener) {
         mItemClickListener = listener;
     }
-
-//
-
-//    List<Product> productList;
-//    Context context;
-//    private OnItemClickListener mItemClickListener;
-//
-//    public ProductAdapter(List<Product> productList, Context context, List<Feature> featureList) {
-//        this.productList = productList;
-//        this.context = context;
-//    }
-//    @NonNull
-//    @Override
-//    public int getCount() {
-//        return productList.size();
-//    }
-//
-//    @Override
-//    public Object getItem(int i) {
-//        return productList.get(i);
-//    }
-//
-//    @Override
-//    public long getItemId(int i) {
-//        return productList.get(i).getProductId();
-//    }
-//    @Override
-//    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-//        ViewHolder viewHolder = null;
-//        if (convertView == null){
-//            convertView = LayoutInflater.from(context).inflate(R.layout.product_listview_item,null);
-//            viewHolder = new ViewHolder(convertView);
-//            convertView.setTag(viewHolder);
-//        }
-//        else{
-//            viewHolder = (ViewHolder) convertView.getTag();
-//        }
-//
-//        Product product = this.productList.get(position);
-//        ///Ánh xạ
-//        //// setText - setImg
-//        viewHolder.tvName.setText(product.getProductName());
-//        viewHolder.tvPrice.setText("Price: "+String.valueOf(product.getProductPrice())+ "$");
-//        if (product.getProductId() < 35) {
-//            Glide.with(context)
-//                    .load(product.getImageUrls().get(0))
-//                    .into(viewHolder.ivIMG);
-//        }
-//
-//        return convertView;
-//    }
-//
-//    public class ViewHolder{
-//        TextView tvName,tvPrice,tvDes;
-//        ImageView ivIMG;
-//        public ViewHolder(View itemView){
-//
-//            tvName = ((TextView) itemView.findViewById(R.id.catename));
-//            ivIMG = (ImageView) itemView.findViewById(R.id.catehinhsp);
-//            tvPrice = ((TextView) itemView.findViewById(R.id.cateprice));
-//        }
-//    }
-
-
 }

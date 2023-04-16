@@ -40,9 +40,9 @@
             android:gravity="center"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:text="Create An Account"
+            android:text="@string/CreateAnAccount"
             android:textColor="#5200FF"
-            android:textSize="40dp"
+            android:textSize="35dp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -128,7 +128,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:backgroundTint="#ffffff"
-                    android:text="SIGN UP"
+                    android:text="@string/SIGNUP"
                     android:textColor="#395C5A"
                     android:textSize="24dp"
                     android:textStyle="bold" />
@@ -146,7 +146,6 @@
                     android:paddingBottom="30dp"/>
             </LinearLayout>
         </LinearLayout>
-
     </LinearLayout>
     </ScrollView>
 </LinearLayout>

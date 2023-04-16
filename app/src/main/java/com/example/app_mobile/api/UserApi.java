@@ -30,7 +30,7 @@ public interface UserApi {
             .create();
 
     public UserApi userAPI = new Retrofit.Builder()
-            .baseUrl("http://192.168.1.11:8080/")
+            .baseUrl("http://192.168.1.139:8080/")
             .client(client)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()

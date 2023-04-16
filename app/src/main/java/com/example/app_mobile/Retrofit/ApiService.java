@@ -1,6 +1,5 @@
 package com.example.app_mobile.Retrofit;
 
-import com.example.app_mobile.Model.Categories;
 import com.example.app_mobile.Model.ChangePassword;
 import com.example.app_mobile.Model.Feature;
 import com.example.app_mobile.Model.Order;
@@ -34,7 +33,6 @@ import retrofit2.http.Query;
 
 public interface ApiService {
     //http://192.168.1.6:8080/api/products
-
     OkHttpClient client = new OkHttpClient.Builder()
             .connectTimeout(100, TimeUnit.SECONDS)
             .readTimeout(100,TimeUnit.SECONDS)
@@ -44,7 +42,7 @@ public interface ApiService {
             .create();
 
     public ApiService apiService = new Retrofit.Builder()
-            .baseUrl("http://192.168.1.11:8080/api/")
+            .baseUrl("http://192.168.1.139:8081/api/")
             .client(client)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
@@ -62,32 +60,14 @@ public interface ApiService {
     ///// Hong
     @GET("products")
     Call<List<Product>> productListData();
-    @GET("search")
-    Call<List<Product>> searchProducts(@Query("q") String query);
-    @DELETE("products/{productId}")
-    Call<Void> DeleteProductID(@Path("productId") int productId);
     @GET("features")
     Call<List<Feature>> featureListData();
-    @GET("categories")
-    Call<List<Categories>> catelist();
-    @POST("products")
-    Call<Product> PostProduct(@Body Product products);
-
-    @PUT("products/{productId}")
-    Call<Product> UpdateProduct(@Path("productId") int productId, @Body Product product);
-
-
 
     //// My
-    // Call<User> postLogin(@Body UserLogin user , @Header("Authorization") String token);
-    //UserApi.userAPI.postLogin(user, USER_LOGIN.getToken()).enqueue(new Callback<User>()
     @GET("orders")
     Call<List<Order>> getOrdersfromUserId(@Query("userId") Long userId , @Header("Authorization") String token);
     @POST("orders")
     Call<Order> PostOrder(@Body Order order ,@Header("Authorization") String token );
-    @GET("features")
-    Call<List<Feature>> featureFromProductId(@Query("productId") Long productId);
-
     @GET("rates")
     Call<List<Rate>> getRateFromProductId(@Query("productId") Long productId, @Header("Authorization") String token );
 
@@ -99,15 +79,9 @@ public interface ApiService {
     @PUT("orders/{orderId}")
     Call<Order> PutOrderByOrderID(@Path("orderId") int orderId, @Body Order order,@Header("Authorization") String token );
 
-    @GET("products/{productId}")
-    Call<Product> productData(@Path("productId") Long productId);
-
     /// Hào
     @GET("orderDetailViews")
     Call<List<OrderDetailView>> getOrderDetailViews(@Query("userId") int userId , @Header("Authorization") String token);
-    @DELETE("orderDetails/{productId}-{orderId}")
-    Call<Void> DeleteOderDetailId(@Path("productId") int productId, @Path("orderId") int orderId
-            , @Header("Authorization") String token);
     @DELETE("orders/{orderId}")
     Call<Void> DeleteOder(@Path("orderId") int orderId , @Header("Authorization") String token);
 

@@ -1,5 +1,7 @@
 package com.example.app_mobile.Activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -120,9 +122,8 @@ public class PaymentActivity extends AppCompatActivity {
                     orderIds.forEach((key, value) -> {
                         deleteOrder(value);
                     });
-                    quitPayment();
+                    AddOrderSuccessConfirmationDialog();
                 }
-
             }
         });
         //close and return previous page
@@ -180,7 +181,6 @@ public class PaymentActivity extends AppCompatActivity {
 //                    Toast.makeText(PaymentActivity.this, "Failed to create order", Toast.LENGTH_SHORT).show();
                 }
             }
-
             @Override
             public void onFailure(Call<Order> call, Throwable t) {
                 System.out.println("Order created ERROL");
@@ -218,5 +218,18 @@ public class PaymentActivity extends AppCompatActivity {
 //                Toast.makeText(PaymentActivity.this, "Failed to delete order: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    private void AddOrderSuccessConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(PaymentActivity.this);
+        builder.setMessage("Order creation successful");
+        builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+
+                dialog.dismiss();
+                quitPayment();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }

@@ -55,19 +55,21 @@ public class ForgotPassword_EnterEmail extends AppCompatActivity {
             public void onClick(View view) {
                 String email = txtEnterEmail.getText().toString().trim().toLowerCase();
                 if (email.length() == 0) {
-                    openDialogEnterEmail(false, "Vui lòng nhập địa chỉ Email!");
+                    openDialogEnterEmail(false, "Please enter your Email address!");
                     return;
                 }
                 if (!email.contains("@gmail.com")) {
-                    openDialogEnterEmail(false, "Email nhập vào không hợp lệ!");
+                    openDialogEnterEmail(false, "Invalid email input!");
                     return;
                 }
                 sendEmailOTP();
 
                 if (checkSendEmail) {
-                    openDialogEnterEmail(true, "Gửi OTP thành công!\nVui lòng kiểm tra địa chỉ Email");
+                    openDialogEnterEmail(true, "OTP sent successfully!\n" +
+                            "Please check your email address");
                 } else {
-                    openDialogEnterEmail(false, "Gửi OTP thất bạn!\nVui lòng kiểm tra địa chỉ Email và thử lại");
+                    openDialogEnterEmail(false, "Send your OTP!\n" +
+                            "Please check your email address and try again");
                 }
             }
         });
@@ -103,7 +105,7 @@ public class ForgotPassword_EnterEmail extends AppCompatActivity {
             properties.put("mail.smtp.ssl.enable", "true");
             properties.put("mail.smtp.auth", "true");
 
-            javax.mail.Session session = Session.getInstance(properties, new Authenticator() {
+            Session session = Session.getInstance(properties, new Authenticator() {
                 @Override
                 protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
                     return new javax.mail.PasswordAuthentication(stringSenderEmail, stringPasswordSenderEmail);
@@ -113,11 +115,11 @@ public class ForgotPassword_EnterEmail extends AppCompatActivity {
             MimeMessage mimeMessage = new MimeMessage(session);
             mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(stringReceiverEmail));
             otpCode = (int) (Math.random() * (999999 - 100000 + 1) + 100000);
-            mimeMessage.setSubject("Mã xác thực OTP đổi mật khẩu");
-            mimeMessage.setText("Chào Quý khách\n" +
+            mimeMessage.setSubject("OTP verification code to change password");
+            mimeMessage.setText("Welcome,\n" +
                     "\n" +
-                    "Quý khách đang thực hiện lấy lại mật khẩu mới trên APP LEZADA SHOP. Để tránh rủi ro, vui lòng không gửi OTP cho bất kỳ ai. Mã OTP: " + otpCode + "\n" + "\nĐể được hỗ trợ thêm, vui lòng liên hệ 1900 1000"
-                    + "\n" + "\nCảm ơn Quý khách.");
+                    "You are performing a new password reset on the LEZADA SHOP APP. To avoid risk, please do not send OTP to anyone. OTP code:\n " + otpCode + "\n" + "\nĐể được hỗ trợ thêm, vui lòng liên hệ 1900 1000"
+                    + "\n" + "\nThank you.");
 
             Thread thread = new Thread(new Runnable() {
                 @Override

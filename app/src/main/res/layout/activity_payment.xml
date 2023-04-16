@@ -15,8 +15,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="PAYMENT"
-            android:textSize="30dp"
+            android:text="@string/PAYMENT"
+            android:textSize="30sp"
             android:textStyle="bold" />
 
         <!--        set border-->
@@ -45,8 +45,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:text="Delivery address"
-                    android:textSize="20dp"
+                    android:text="@string/Deliveryaddress"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -57,7 +57,7 @@
                 android:layout_marginRight="20dp"
                 android:text="Nguyễn Anh Hào"
                 android:layout_marginLeft="30dp"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <EditText
@@ -65,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:hint="Phone Number" />
 
             <EditText
@@ -73,7 +73,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:layout_marginTop="4dp"
                 android:layout_marginRight="30dp"
                 android:hint="Address" />
@@ -96,8 +96,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dp"
-                android:text="Choose method payment:"
-                android:textSize="16dp"
+                android:text="@string/Choosemethodpayment"
+                android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -112,13 +112,13 @@
                 android:id="@+id/rbPaymentOnDelivery"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:text="Payment on delivery" />
+                android:text="@string/Paymentondelivery" />
 
             <RadioButton
                 android:id="@+id/rbPaymentWithCard"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:text="Visa/Credit" />
+                android:text="@string/VisaCredit" />
         </RadioGroup>
 
         <LinearLayout
@@ -133,7 +133,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
                 android:hint="Coupon"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
 
             <ImageView
                 android:id="@+id/ivRefreshCoupon"
@@ -171,8 +171,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
-                    android:text="Payment detail"
-                    android:textSize="16dp"
+                    android:text="@string/Paymentdetail"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -188,8 +188,8 @@
                 <TextView
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:text="Price"
+                    android:gravity="start"
+                    android:text="@string/Price"
                     android:textStyle="bold" />
 
                 <TextView

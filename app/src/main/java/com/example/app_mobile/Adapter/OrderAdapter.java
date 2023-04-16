@@ -19,8 +19,6 @@ import com.example.app_mobile.Model.Product;
 import com.example.app_mobile.Model.User;
 import com.example.app_mobile.R;
 import com.example.app_mobile.Retrofit.ApiService;
-
-
 import java.util.List;
 import java.util.Map;
 
@@ -120,7 +118,7 @@ public class OrderAdapter extends BaseAdapter {
                         order.setOrderStatus("CANCELED");
                         PutOrderByOrderID(Math.toIntExact(order.getOrderId()),order,userInfoLogin.getToken());
                         notifyDataSetChanged();
-                        Toast.makeText(context, "Hủy Đơn Hàng Thành Công", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Order Cancellation Successfully", Toast.LENGTH_SHORT).show();
                     }
                 });
                 builder.setNegativeButton("No", null);

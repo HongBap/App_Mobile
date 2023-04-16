@@ -31,7 +31,6 @@ import com.example.app_mobile.Model.Product;
 import com.example.app_mobile.Model.User;
 import com.example.app_mobile.R;
 import com.example.app_mobile.Retrofit.ApiService;
-
 import com.google.android.material.navigation.NavigationView;
 
 import java.io.Serializable;
@@ -74,9 +73,6 @@ public class HomeActivity extends AppCompatActivity {
         userInfoLogin = (User) intent.getSerializableExtra("userInfoLogin");
         setControl();
         ActionViewFlipper();
-//
-//        LoadingTask loadingTask = new LoadingTask();
-//        loadingTask.execute();
         getListProductAPI();
         getListFeatureAPI();
         getListOrderAPI();
@@ -184,11 +180,6 @@ public class HomeActivity extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 switch (item.getItemId()) {
                     case R.id.nav_home:
-//                        if (currentActivity == HOME_A){
-//                            drawerLayout.closeDrawer(GravityCompat.START);
-//                            break;
-//                        }
-//                        currentActivity = HOME_A;
                         Intent trangchu = new Intent(getApplicationContext(), HomeActivity.class);
                         trangchu.putExtra("userInfoLogin", userInfoLogin);
                         startActivity(trangchu);
@@ -290,8 +281,6 @@ public class HomeActivity extends AppCompatActivity {
         alertDialog.show();
     }
     private void getListOrderAPI() {
-//        System.out.println("UserInfo: "+ userInfoLogin);
-//        System.out.println("UserID "+ userInfoLogin.getId());
         ApiService.apiService.getOrderDetailViews(userInfoLogin.getId(), userInfoLogin.getToken()).enqueue(new Callback<List<OrderDetailView>>() {
             @Override
             public void onResponse(Call<List<OrderDetailView>> call, Response<List<OrderDetailView>> response) {
@@ -302,7 +291,6 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<OrderDetailView>> call, Throwable t) {
-//                Toast.makeText(HomeActivity.this, "Can't get data!" + t, Toast.LENGTH_SHORT).show();
                 System.out.println("getListOrderAPI call API error " + t);
             }
         });

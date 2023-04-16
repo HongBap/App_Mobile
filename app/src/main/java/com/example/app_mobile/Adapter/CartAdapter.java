@@ -23,7 +23,6 @@ import com.example.app_mobile.Model.User;
 import com.example.app_mobile.R;
 import com.example.app_mobile.Retrofit.ApiService;
 
-
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;

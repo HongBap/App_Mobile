@@ -11,7 +11,7 @@
             android:id="@+id/tvUserBinhLuan"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:text="Khách hàng"
+            android:text="Customer"
             android:textStyle="bold"
             android:textSize="20sp"
             android:layout_marginLeft="10sp">
@@ -56,7 +56,7 @@
         android:id="@+id/tvBinhLuan"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="binh luận khách hàng"
+        android:text="customer comments"
         android:textSize="20sp"
         android:layout_marginLeft="10sp">
     </TextView>

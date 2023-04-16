@@ -22,8 +22,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ORDER"
-            android:textSize="30dp"
+            android:text="@string/ORDER"
+            android:textSize="30sp"
             android:paddingLeft="20dp"
             android:textStyle="bold"
             android:layout_gravity="center"
@@ -40,7 +40,7 @@
             android:textStyle="italic|bold"
             android:layout_marginLeft="20dp"
             android:layout_gravity="center"
-            android:text="Filter by: "/>
+            android:text="@string/filterBy"/>
         <Spinner
             android:id="@+id/spinnerFilterOrder"
             android:layout_width="match_parent"

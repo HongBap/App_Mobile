@@ -11,7 +11,6 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
 import com.example.app_mobile.Adapter.OrderAdapter;
 import com.example.app_mobile.Model.Order;
 import com.example.app_mobile.Model.Product;
@@ -77,7 +76,6 @@ public class OrderActivity extends AppCompatActivity {
                 }
                 adapter.notifyDataSetChanged();
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }

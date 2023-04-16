@@ -27,8 +27,6 @@ import com.example.app_mobile.Model.Rate;
 import com.example.app_mobile.Model.User;
 import com.example.app_mobile.R;
 import com.example.app_mobile.Retrofit.ApiService;
-
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -181,11 +179,11 @@ public class ProductDetail extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (edtMyBinhLuan.getText().length() == 0) {
-                    Toast.makeText(ProductDetail.this, "Bình luận không để trống", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProductDetail.this, "Comments are not empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (tvDanhGia.getTag() == null) {
-                    Toast.makeText(ProductDetail.this, "Số sao đánh giá không để trống", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProductDetail.this, "Rating stars are not empty\n", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 Rate rate = new Rate();
@@ -439,7 +437,7 @@ public class ProductDetail extends AppCompatActivity {
                 ViewGroup.LayoutParams params = lvBinhLuan.getLayoutParams();
                 params.height = 200*response.body().size(); // đặt chiều cao của view là 100px
                 lvBinhLuan.setLayoutParams(params);
-                Toast.makeText(getApplicationContext(), "RateList Call API ok", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), "RateList Call API ok", Toast.LENGTH_SHORT).show();
                 System.out.println("RateList call API ok--- " + response.body().size());
                 for (Rate rate: response.body()){
                     btnGuiBinhLuan.setTag("nocomment");

@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
 import com.example.app_mobile.Model.ChangePassword;
 import com.example.app_mobile.R;
 import com.example.app_mobile.Retrofit.ApiService;
@@ -32,21 +31,17 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ForgotPassword_SetPass extends AppCompatActivity {
-
     Button btnEnterNewPassword;
     EditText txtEnterNewPassword, txtEnterReNewPassword;
-
     ImageButton btnPrevious;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password_set_pass);
-
         addControls();
         addEvents();
     }
-
 
     private void addEvents() {
         btnEnterNewPassword.setOnClickListener(new View.OnClickListener() {
@@ -55,21 +50,21 @@ public class ForgotPassword_SetPass extends AppCompatActivity {
                 String newPassword = txtEnterNewPassword.getText().toString().trim();
                 String reNewPassword = txtEnterReNewPassword.getText().toString().trim();
                 if (newPassword.length() == 0) {
-                    openDialogSetPass(false, "Vui lòng nhập mật khẩu mới!");
+                    openDialogSetPass(false, "Please enter a new password!");
                     return;
                 }
                 if (reNewPassword.length() == 0) {
-                    openDialogSetPass(false, "Vui lòng nhập lại mật khẩu mới!");
+                    openDialogSetPass(false, "Please re-enter new password!");
                     return;
                 }
 
                 if (newPassword.length() < 6) {
-                    openDialogSetPass(false, "Mật khẩu cần từ 6 ký tự trở lên");
+                    openDialogSetPass(false, "Password needs 6 or more characters");
                     return;
                 }
 
                 if (newPassword.equals(reNewPassword) == false) {
-                    openDialogSetPass(false, "Hai mật khẩu không giống nhau! Vui lòng nhập lại");
+                    openDialogSetPass(false, "Two passwords are not the same! Please re-enter");
                     return;
                 }
 
@@ -89,11 +84,11 @@ public class ForgotPassword_SetPass extends AppCompatActivity {
         String email = ForgotPassword_EnterEmail.emailInput;
         String password = txtEnterNewPassword.getText().toString().trim();
         if (email.length() == 0) {
-            openDialogSetPass(false, "Vui lòng quay lại bước nhập địa chỉ Email!");
+            openDialogSetPass(false, "Please go back to entering your email address!");
             return;
         }
         if (!email.contains("@gmail.com")) {
-            openDialogSetPass(false, "Email nhập vào không hợp lệ!\nVui lòng quay lại bước nhập địa chỉ Email.");
+            openDialogSetPass(false, "Invalid email input!\nPlease return to the step of entering the email address.");
             return;
         }
 
@@ -105,14 +100,14 @@ public class ForgotPassword_SetPass extends AppCompatActivity {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
                     if (response.code() == 200) {
-                        openDialogSetPass(true, "Thay đổi mật khẩu thành công!");
+                        openDialogSetPass(true, "Password change successful!");
                     }
                 } else {
                     try {
                         String strResponseBody = "";
                         strResponseBody = response.errorBody().string();
                         JSONObject messageObject = new JSONObject(strResponseBody);
-                        openDialogSetPass(false, "Thay đổi mật khẩu thất bại!\n" + messageObject.get("message"));
+                        openDialogSetPass(false, "Password change failed!" + messageObject.get("message"));
                         Log.v("Error code 400", response.errorBody().string());
                     } catch (IOException e) {
                         throw new RuntimeException(e);

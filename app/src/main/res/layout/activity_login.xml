@@ -27,12 +27,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:gravity="center"
             android:textColor="#5200FF"
-            android:text="Welcome to App" />
+            android:text="@string/WelcometoApp" />
 
         <LinearLayout
             android:orientation="vertical"
@@ -46,7 +46,7 @@
                 android:layout_height="50dp"
                 android:layout_marginBottom="30dp"
                 android:background="@drawable/input_login"
-                android:drawableLeft="@drawable/user_login"
+                android:drawableStart="@drawable/user_login"
                 android:drawablePadding="10dp"
                 android:hint="Username"
                 android:maxLines="1"
@@ -83,21 +83,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:text="Remember me"
-                    android:textSize="16dp"
+                    android:text="@string/Rememberme"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/forgotPassword"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerInParent="true"
                     android:layout_gravity="center|right|end"
                     android:text="@string/forgot_password_string"
                     android:textColor="@color/red"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                     />
             </RelativeLayout>
 
             <LinearLayout
@@ -110,7 +111,7 @@
                     android:id="@+id/btnSignIn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SIGN IN"
+                    android:text="@string/SIGNIN"
                     android:backgroundTint="#ffffff"
                     android:textColor="#395C5A"
                     android:textStyle="bold"

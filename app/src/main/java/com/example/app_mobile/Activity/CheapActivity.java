@@ -15,7 +15,6 @@ import com.example.app_mobile.Model.Product;
 import com.example.app_mobile.Model.User;
 import com.example.app_mobile.R;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

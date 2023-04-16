@@ -44,7 +44,7 @@ public class ProductMainAdapter extends RecyclerView.Adapter<ProductMainAdapter.
         Product product = array.get(position);
         holder.txtten.setText(product.getProductName());
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-        holder.txtgia.setText("Giá: " + decimalFormat.format(Double.parseDouble(String.valueOf(product.getProductPrice()))) + "$");
+        holder.txtgia.setText("Price: " + decimalFormat.format(Double.parseDouble(String.valueOf(product.getProductPrice()))) + "$");
         if (product.getImageUrls().size() !=0) {
             Glide.with(context)
                     .load(product.getImageUrls().get(0))

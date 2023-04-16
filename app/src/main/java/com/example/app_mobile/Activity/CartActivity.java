@@ -92,16 +92,13 @@ public class CartActivity extends AppCompatActivity {
                     address = "(please update your address!)";
                 }
                 int orderId = orderDetailView.getOrderId();
-//                String price = String.valueOf(orderDetailView.getPrice());
                 String total = tvTotals.getText().toString().trim();
                 Intent intent = new Intent(CartActivity.this, PaymentActivity.class);
-                //intent.putExtra("orderId", orderId);
                 intent.putExtra("userId", userInfoLogin.getId());
                 intent.putExtra("username", username);
                 intent.putExtra("phoneNumber", phoneNumber);
                 intent.putExtra("address", address);
                 intent.putExtra("userInfoLogin", userInfoLogin);
-
 
                 Order order = new Order();
                 order.setUserId((long) userInfoLogin.getId());
@@ -111,9 +108,6 @@ public class CartActivity extends AppCompatActivity {
                 order.setOrderDetails(orderDetails);
                 intent.putExtra("order", order);
                 intent.putExtra("mainOrderIds", (Serializable) orderIds);
-
-//                updateOrderAPI(order);
-
                 if (total == "") {
                     Toast.makeText(CartActivity.this, "You didn't choose item!", Toast.LENGTH_SHORT).show();
                 } else {
@@ -147,7 +141,6 @@ public class CartActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver, new IntentFilter("send2Main"));
-//        getListOrderAPI();
     }
 
     @Override
@@ -164,7 +157,6 @@ public class CartActivity extends AppCompatActivity {
             }
             @Override
             public void onFailure(Call<List<OrderDetailView>> call, Throwable t) {
-//                Toast.makeText(CartActivity.this, "Can't get data!" + t, Toast.LENGTH_SHORT).show();
                 System.out.println("getListOrderAPI call API error " + t);
             }
         });

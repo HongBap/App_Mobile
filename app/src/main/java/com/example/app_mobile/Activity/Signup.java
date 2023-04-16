@@ -66,26 +66,26 @@ public class Signup extends AppCompatActivity {
                 Log.e("txtUsername", txtRePassword.getText().toString());
 
                 if (username.length() == 0) {
-                    openDialogSignup(isSignup, "Vui lòng nhập username");
+                    openDialogSignup(isSignup, "Please enter username");
                     return;
                 }
                 if (email.length() == 0) {
-                    openDialogSignup(isSignup, "Vui lòng nhập địa chỉ Email");
+                    openDialogSignup(isSignup, "Please enter your email address");
                     return;
                 }
 
                 if (password.length() == 0) {
-                    openDialogSignup(isSignup, "Vui lòng nhập password");
+                    openDialogSignup(isSignup, "Please enter password");
                     return;
                 }
 
                 if (rePassword.length() == 0) {
-                    openDialogSignup(isSignup, "Vui lòng nhập lại password");
+                    openDialogSignup(isSignup, "Please re-enter password");
                     return;
                 }
 
                 if (!rePassword.equals(password)) {
-                    openDialogSignup(isSignup, "Hai mật khẩu không giống nhau");
+                    openDialogSignup(isSignup, "Two passwords are not the same");
                     return;
                 }
 
@@ -134,7 +134,7 @@ public class Signup extends AppCompatActivity {
                         String strResponseBody = response.body().string();
                         try {
                             JSONObject messageObject = new JSONObject(strResponseBody);
-                            openDialogSignup(true, "Đăng ký tài khoản thành công!\n" + messageObject.get("message"));
+                            openDialogSignup(true, "Successful account registration!\n" + messageObject.get("message"));
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
                         }
@@ -143,7 +143,7 @@ public class Signup extends AppCompatActivity {
                         try {
                             String strResponseBody = response.errorBody().string();
                             JSONObject messageObject = new JSONObject(strResponseBody);
-                            openDialogSignup(false, "Đăng ký tài khoản thất bại!\n" + messageObject.get("message"));
+                            openDialogSignup(false, "Account registration failed!\n" + messageObject.get("message"));
 //                          Log.v("Error code 400",response.errorBody().string());
                         } catch (JSONException e) {
                             throw new RuntimeException(e);

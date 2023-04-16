@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -13,15 +14,21 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.app_mobile.Adapter.ProductAdapter;
+import com.example.app_mobile.Adapter.ProductMainAdapter;
 import com.example.app_mobile.Model.Feature;
 import com.example.app_mobile.Model.Product;
 import com.example.app_mobile.Model.User;
 import com.example.app_mobile.R;
-
+import com.example.app_mobile.Retrofit.ApiService;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SearchActivity extends AppCompatActivity {
     Toolbar toolbar;
@@ -29,7 +36,7 @@ public class SearchActivity extends AppCompatActivity {
     EditText edtsearch;
     ProductAdapter productAdapter;
     List<Product> productList = new ArrayList<>();
-    List spm = new ArrayList();
+    List<Product> spm = new ArrayList<>();
     List<Feature> featureList = new ArrayList<>();
     User userInfoLogin;
 
@@ -42,7 +49,7 @@ public class SearchActivity extends AppCompatActivity {
         setControl();
         setEvent();
         ActionToolBar();
-//        getListProductAPI();
+        GetListProductAPI();
 //        getListFeatureAPI();
     }
     private void setEvent() {
@@ -56,42 +63,33 @@ public class SearchActivity extends AppCompatActivity {
         productAdapter = new ProductAdapter(spm,getApplicationContext());
         recyclerView.setAdapter(productAdapter);
     }
+    private void GetListProductAPI(){
+        ApiService.apiService.productListData().enqueue(new Callback<List<Product>>() {
+            @Override
+            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                productList = response.body();
+                List<Product> searchList = new ArrayList<>();
+                searchList.addAll(productList);
+            }
 
-    //    private void getListFeatureAPI() {
-//        ApiService.apiService.featureListData().enqueue(new Callback<List<Feature>>() {
-//            @Override
-//            public void onResponse(Call<List<Feature>> call, Response<List<Feature>> response) {
-//                featureList = response.body();
-//                System.out.println("FeatureList call API ok");
-//            }
-//            @Override
-//            public void onFailure(Call<List<Feature>> call, Throwable t) {
-//                Toast.makeText(getApplicationContext(), "Call API Errol  " + t, Toast.LENGTH_SHORT).show();
-//                System.out.println("FeatureList Call API Errol  " + t);
-//            }
-//        });
-//    }
-//    private void getListProductAPI() {
-//        ApiService.apiService.productListData().enqueue(new Callback<List<Product>>() {
-//            @Override
-//            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
-//                productList = response.body();
-//                System.out.println("ProductList Call API ok");
-//                for(int i=0 ; i<=5;i++ ){
-//                    spm.add(productList.get(i));
-//                }
-//                productAdapter = new ProductAdapter(spm,getApplicationContext());
-//                recyclerView.setAdapter(productAdapter);
-//            }
-//            @Override
-//            public void onFailure(Call<List<Product>> call, Throwable t) {
-//                Toast.makeText(SearchActivity.this , "Call API Errol  " + t, Toast.LENGTH_SHORT).show();
-//                System.out.println("ProductList Call API Errol  " + t);
-//
-//            }
-//        });
-//    }
+            @Override
+            public void onFailure(Call<List<Product>> call, Throwable t) {
+
+            }
+        });
+    }
     public List<Product> searchProduct(String keyword) {
+        ApiService.apiService.productListData().enqueue(new Callback<List<Product>>() {
+            @Override
+            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                productList = response.body();
+            }
+            @Override
+            public void onFailure(Call<List<Product>> call, Throwable t) {
+                Toast.makeText(SearchActivity.this, "Call API EROR", Toast.LENGTH_SHORT).show();
+
+            }
+        });
         List<Product> result = new ArrayList<>();
         for (Product product : productList) {
             if (product.getProductName().toLowerCase().contains(keyword.toLowerCase())) {
@@ -100,6 +98,7 @@ public class SearchActivity extends AppCompatActivity {
         }
         return result;
     }
+
     private void setControl() {
 
         edtsearch = findViewById(R.id.edtsearch);
@@ -142,7 +141,6 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private void ActionToolBar() {
         setSupportActionBar(toolbar);
