@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/beige"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/ivImageOrderDetailItem"
+        android:layout_width="120dp"
+        android:layout_height="160dp"
+        android:src="@drawable/s20_699"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tvNameOrderDetailItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:text="SAMSUNG Galaxy S20 FE 5G Cell Phone"
+            android:textColor="#000000"
+            android:textSize="23sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/tvPriceOrderDetailItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:text="123"
+            android:textColor="#FF1744"
+            android:textStyle="bold"
+            android:drawableRight="@drawable/baseline_attach_money_24"
+            android:textSize="25sp" />
+        <TextView
+            android:id="@+id/tvAmountOrderDetailItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:text="2"
+            android:textColor="#000000"
+            android:drawableLeft="@drawable/baseline_clear_24"
+            android:textSize="25sp" />
+    </LinearLayout>
+
+</LinearLayout>

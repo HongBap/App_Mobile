@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">App_Mobile</string>
+    <string name="forgot_password_string"><u>Forgot password</u></string>
+    <string name="create_an_account_string"><u>Create an account</u></string>
+    <string name="have_an_account_string"><u>Already have an account</u></string>
+    <string name="forgot_password_string_vn"><u>Quên mật khẩu</u></string>
+    <string name="back_string"> &#60; </string>
+</resources>

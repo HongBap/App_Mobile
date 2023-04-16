@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/baseline_home_24"
+            android:title="Home"/>
+        <item
+            android:id="@+id/mn_Cheap"
+            android:icon="@drawable/baseline_smartphone_24"
+            android:title="Cheap Product" />
+        <item
+            android:id="@+id/mn_Average"
+            android:icon="@drawable/baseline_smartphone_24"
+            android:title="Average Expensive" />
+        <item
+            android:id="@+id/mn_Expensive"
+            android:icon="@drawable/baseline_smartphone_24"
+            android:title="Expensive Expensive" />
+        <item
+            android:id="@+id/mn_Cart"
+            android:icon="@drawable/baseline_smartphone_24"
+            android:title="Cart" />
+        <item
+            android:id="@+id/mn_Order"
+            android:icon="@drawable/baseline_smartphone_24"
+            android:title="Order" />
+    </group>
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/mn_logOut"
+                android:icon="@drawable/baseline_logout_24"
+                android:title="Log Out" />
+        </menu>
+
+    </item>
+
+</menu>
