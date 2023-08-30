@@ -1,13 +1,11 @@
-package com.example.app_mobile_phone.Activity;
+package com.example.app_mobile.Activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
-import android.view.View;
 
-import com.example.app_mobile_phone.R;
+import com.example.app_mobile.R;
 
 public class LoadingDialog {
     private Activity activity;

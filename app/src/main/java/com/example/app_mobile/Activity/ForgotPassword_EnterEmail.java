@@ -2,9 +2,12 @@ package com.example.app_mobile.Activity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -16,6 +19,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.app_mobile.R;
+import com.example.app_mobile.Util.InputHandle;
+import com.example.app_mobile.Util.NetworkChangeReceiver;
 
 import java.util.Properties;
 
@@ -29,11 +34,11 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class ForgotPassword_EnterEmail extends AppCompatActivity {
-
     Button btnEnterEmail;
     EditText txtEnterEmail;
     ImageButton btnPrevious;
 
+    private NetworkChangeReceiver networkChangeReceiver = new NetworkChangeReceiver();
     private boolean checkSendEmail = false;
 
     public static int otpCode = -1;
@@ -55,21 +60,21 @@ public class ForgotPassword_EnterEmail extends AppCompatActivity {
             public void onClick(View view) {
                 String email = txtEnterEmail.getText().toString().trim().toLowerCase();
                 if (email.length() == 0) {
-                    openDialogEnterEmail(false, "Please enter your Email address!");
+                    openDialogEnterEmail(false, "Please enter your Email!");
                     return;
                 }
                 if (!email.contains("@gmail.com")) {
                     openDialogEnterEmail(false, "Invalid email input!");
                     return;
                 }
+                LoadingDialog loadingDialog = new LoadingDialog(ForgotPassword_EnterEmail.this);
+                loadingDialog.startLoadingDialog();
                 sendEmailOTP();
-
+                loadingDialog.closeLoadingDialog();
                 if (checkSendEmail) {
-                    openDialogEnterEmail(true, "OTP sent successfully!\n" +
-                            "Please check your email address");
+                    openDialogEnterEmail(true, "OTP sent successfully!\n Please check your email address");
                 } else {
-                    openDialogEnterEmail(false, "Send your OTP!\n" +
-                            "Please check your email address and try again");
+                    openDialogEnterEmail(false, "OTP sending failed!\nPlease check your email address and try again");
                 }
             }
         });
@@ -86,6 +91,7 @@ public class ForgotPassword_EnterEmail extends AppCompatActivity {
         btnEnterEmail = findViewById(R.id.btnEnterEmail);
         txtEnterEmail = findViewById(R.id.txtEnterEmail);
         btnPrevious = findViewById(R.id.btnPrevious);
+        txtEnterEmail.setFilters(new InputFilter[] {InputHandle.filter});
     }
 
 
@@ -115,11 +121,11 @@ public class ForgotPassword_EnterEmail extends AppCompatActivity {
             MimeMessage mimeMessage = new MimeMessage(session);
             mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(stringReceiverEmail));
             otpCode = (int) (Math.random() * (999999 - 100000 + 1) + 100000);
-            mimeMessage.setSubject("OTP verification code to change password");
-            mimeMessage.setText("Welcome,\n" +
+            mimeMessage.setSubject("Mã xác thực OTP đổi mật khẩu");
+            mimeMessage.setText("Chào Quý khách\n" +
                     "\n" +
-                    "You are performing a new password reset on the LEZADA SHOP APP. To avoid risk, please do not send OTP to anyone. OTP code:\n " + otpCode + "\n" + "\nĐể được hỗ trợ thêm, vui lòng liên hệ 1900 1000"
-                    + "\n" + "\nThank you.");
+                    "Quý khách đang thực hiện lấy lại mật khẩu mới trên APP LEZADA SHOP. Để tránh rủi ro, vui lòng không gửi OTP cho bất kỳ ai. Mã OTP: " + otpCode + "\n" + "\nĐể được hỗ trợ thêm, vui lòng liên hệ 1900 1000"
+                    + "\n" + "\nCảm ơn Quý khách.");
 
             Thread thread = new Thread(new Runnable() {
                 @Override
@@ -136,7 +142,6 @@ public class ForgotPassword_EnterEmail extends AppCompatActivity {
             });
             thread.start();
             thread.join();
-
         } catch (AddressException e) {
             e.printStackTrace();
         } catch (MessagingException e) {
@@ -178,5 +183,19 @@ public class ForgotPassword_EnterEmail extends AppCompatActivity {
             }
         });
         dialog.show();
+    }
+
+    @Override
+    protected void onStart() {
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeReceiver, filter);
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        unregisterReceiver(networkChangeReceiver);
+        super.onStop();
     }
 }

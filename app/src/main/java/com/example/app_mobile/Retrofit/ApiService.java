@@ -60,6 +60,8 @@ public interface ApiService {
     ///// Hong
     @GET("products")
     Call<List<Product>> productListData();
+    @GET("products")
+    Call<List<Product>> getProductListSale(@Query("eventId") int eventId);
     @GET("features")
     Call<List<Feature>> featureListData();
 
@@ -71,7 +73,7 @@ public interface ApiService {
     @GET("rates")
     Call<List<Rate>> getRateFromProductId(@Query("productId") Long productId, @Header("Authorization") String token );
 
-    @POST("/api/rates")
+    @POST("rates")
     Call<Rate> PostRate(@Body Rate rate,@Header("Authorization") String token );
 
     @PUT("rates/{productId}-{userId}")
@@ -80,6 +82,7 @@ public interface ApiService {
     Call<Order> PutOrderByOrderID(@Path("orderId") int orderId, @Body Order order,@Header("Authorization") String token );
 
     /// Hào
+    //http://localhost:8080/api/orderDetailViews?userId=10101
     @GET("orderDetailViews")
     Call<List<OrderDetailView>> getOrderDetailViews(@Query("userId") int userId , @Header("Authorization") String token);
     @DELETE("orders/{orderId}")

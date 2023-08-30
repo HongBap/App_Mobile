@@ -1,4 +1,4 @@
-package com.example.app_mobile_phone.Util;
+package com.example.app_mobile.Util;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -13,7 +13,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.app_mobile_phone.R;
+import com.example.app_mobile.R;
+
 
 public class ShowDialog {
     private boolean isSuccess;

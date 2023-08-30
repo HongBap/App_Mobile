@@ -149,15 +149,16 @@ public class CartActivity extends AppCompatActivity {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
     }
     private void getListOrderAPI() {
-        ApiService.apiService.getOrderDetailViews(userInfoLogin.getId(),userInfoLogin.getToken()).enqueue(new Callback<List<OrderDetailView>>() {
+        ApiService.apiService.getOrderDetailViews(userInfoLogin.getId(), userInfoLogin.getToken()).enqueue(new Callback<List<OrderDetailView>>() {
             @Override
             public void onResponse(Call<List<OrderDetailView>> call, Response<List<OrderDetailView>> response) {
                 listTmp = response.body();
                 setEvent();
             }
+
             @Override
             public void onFailure(Call<List<OrderDetailView>> call, Throwable t) {
-                System.out.println("getListOrderAPI call API error " + t);
+
             }
         });
     }

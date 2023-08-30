@@ -1,4 +1,4 @@
-package com.example.app_mobile_phone.Util;
+package com.example.app_mobile.Util;
 
 import android.app.Dialog;
 import android.content.BroadcastReceiver;

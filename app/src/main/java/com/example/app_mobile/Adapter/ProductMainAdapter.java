@@ -1,6 +1,7 @@
 package com.example.app_mobile.Adapter;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +46,10 @@ public class ProductMainAdapter extends RecyclerView.Adapter<ProductMainAdapter.
         holder.txtten.setText(product.getProductName());
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
         holder.txtgia.setText("Price: " + decimalFormat.format(Double.parseDouble(String.valueOf(product.getProductPrice()))) + "$");
+        holder.txtgiaEvent.setText("Price: " + decimalFormat.format(Double.parseDouble(String.valueOf(product.getProductPrice()))*1.2) + "$");
+        if (product.getEventId() == 1) holder.txtgiaEvent.setVisibility(View.VISIBLE);
+        else holder.txtgiaEvent.setVisibility(View.INVISIBLE);
+        holder.txtgiaEvent.setPaintFlags(holder.txtgiaEvent.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         if (product.getImageUrls().size() !=0) {
             Glide.with(context)
                     .load(product.getImageUrls().get(0))
@@ -66,11 +71,12 @@ public class ProductMainAdapter extends RecyclerView.Adapter<ProductMainAdapter.
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView txtgia, txtten;
+        TextView txtgia, txtten,txtgiaEvent;
         ImageView imghinhanh;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             txtgia = itemView.findViewById(R.id.itemsp_gia);
+            txtgiaEvent = itemView.findViewById(R.id.itemsp_giaEvent);
             txtten = itemView.findViewById(R.id.itemsp_ten);
             imghinhanh = itemView.findViewById(R.id.itemsp_image);
         }

@@ -1,4 +1,4 @@
-package com.example.app_mobile_phone.Activity;
+package com.example.app_mobile.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,13 +16,13 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.app_mobile_phone.Adapter.ProductAdapter;
-import com.example.app_mobile_phone.Adapter.ProductSaleAdapter;
-import com.example.app_mobile_phone.Model.Feature;
-import com.example.app_mobile_phone.Model.Product;
-import com.example.app_mobile_phone.Model.User;
-import com.example.app_mobile_phone.R;
-import com.example.app_mobile_phone.Retrofit.ApiService;
+import com.example.app_mobile.Adapter.ProductAdapter;
+import com.example.app_mobile.Adapter.ProductSaleAdapter;
+import com.example.app_mobile.Model.Feature;
+import com.example.app_mobile.Model.Product;
+import com.example.app_mobile.Model.User;
+import com.example.app_mobile.R;
+import com.example.app_mobile.Retrofit.ApiService;
 
 import java.io.Serializable;
 import java.util.ArrayList;

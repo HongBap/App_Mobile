@@ -16,6 +16,15 @@ public class Product implements Serializable {
     private List<Integer> featureIds;
 
     private List<String> imageUrls;
+    private int eventId;
+
+    public int getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
+    }
 
     public Product(int productId, int productPrice, String productName, String productDescription, int cateId, String categoryName, String productCreateDate, int productRemain, String productUpDate, List<Integer> featureIds, List<String> imageUrls) {
         this.productId = productId;

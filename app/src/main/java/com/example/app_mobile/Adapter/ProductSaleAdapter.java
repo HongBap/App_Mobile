@@ -1,4 +1,4 @@
-package com.example.app_mobile_phone.Adapter;
+package com.example.app_mobile.Adapter;
 
 import android.content.Context;
 import android.graphics.Paint;
@@ -12,8 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.app_mobile_phone.Model.Product;
-import com.example.app_mobile_phone.R;
+import com.example.app_mobile.Model.Product;
+import com.example.app_mobile.R;
 
 import java.text.DecimalFormat;
 import java.util.List;

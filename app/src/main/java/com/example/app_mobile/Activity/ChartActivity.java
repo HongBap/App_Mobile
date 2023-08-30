@@ -1,4 +1,4 @@
-package com.example.app_mobile_phone.Activity;
+package com.example.app_mobile.Activity;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -7,9 +7,10 @@ import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.app_mobile_phone.Model.Order;
-import com.example.app_mobile_phone.Model.User;
-import com.example.app_mobile_phone.R;
+
+import com.example.app_mobile.Model.Order;
+import com.example.app_mobile.Model.User;
+import com.example.app_mobile.R;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;

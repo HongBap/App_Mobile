@@ -2,28 +2,25 @@ package com.example.app_mobile.Activity;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.app_mobile.R;
-
+import com.example.app_mobile.Util.NetworkChangeReceiver;
+import com.example.app_mobile.Util.ShowDialog;
 
 public class ForgotPassword_EnterCode extends AppCompatActivity {
-
     Button btnEnterCode;
     EditText txtEnterCode;
-
     ImageButton btnPrevious;
+    private NetworkChangeReceiver networkChangeReceiver = new NetworkChangeReceiver();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +37,15 @@ public class ForgotPassword_EnterCode extends AppCompatActivity {
             public void onClick(View view) {
                 String code = txtEnterCode.getText().toString().trim().toLowerCase();
                 if (code.length() == 0) {
-                    openDialogEnterCode("Please enter the verification code!\n");
+                    Dialog dialog = new Dialog(ForgotPassword_EnterCode.this);
+                    ShowDialog showDialog = new ShowDialog(dialog, false, "Please enter the verification code!", ForgotPassword_EnterCode.this, ForgotPassword_SetPass.class, true);
                     return;
                 }
-                if (!code.equals(String.valueOf(ForgotPassword_EnterEmail.otpCode))) {
-                    openDialogEnterCode("Verification code is incorrect, please check again!");
+                if (!code.equals(String.valueOf(ForgotPassword_EnterEmail.otpCode)) || code.length() < 6) {
+                    Dialog dialog = new Dialog(ForgotPassword_EnterCode.this);
+                    ShowDialog showDialog = new ShowDialog(dialog, false, "Verification code is incorrect, please check again or get a new OTP!", ForgotPassword_EnterCode.this, ForgotPassword_SetPass.class, true);
                     return;
                 }
-
                 Intent intent = new Intent(ForgotPassword_EnterCode.this, ForgotPassword_SetPass.class);
                 startActivity(intent);
             }
@@ -67,33 +65,17 @@ public class ForgotPassword_EnterCode extends AppCompatActivity {
         btnPrevious = findViewById(R.id.btnPrevious);
     }
 
+    @Override
+    protected void onStart() {
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeReceiver, filter);
+        super.onStart();
+    }
 
-    public void openDialogEnterCode(String text_content) {
-        final Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.layout_dialog_message);
-        dialog.setCancelable(true);
-
-        Window window = dialog.getWindow();
-        if (window == null) {
-            return;
-        }
-
-        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        WindowManager.LayoutParams windowAttributes = window.getAttributes();
-        window.setAttributes(windowAttributes);
-
-        Button btnDialogOke = dialog.findViewById(R.id.btnDialogOke);
-        TextView txtDialogContent = dialog.findViewById(R.id.txtDialogContent);
-        txtDialogContent.setText(text_content);
-        btnDialogOke.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-        dialog.show();
+    @Override
+    protected void onStop() {
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        unregisterReceiver(networkChangeReceiver);
+        super.onStop();
     }
 }
