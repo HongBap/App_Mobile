@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.app_mobile.Model.Rate;
 import com.example.app_mobile.R;
+
 import java.util.List;
 
 public class RateAdapter extends BaseAdapter {

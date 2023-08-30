@@ -53,8 +53,6 @@ public class CheapActivity extends AppCompatActivity {
         featureList = (List<Feature>) bundle.getSerializable("keyfeatureList");
         Intent intent = getIntent();
         userInfoLogin = (User) intent.getSerializableExtra("userInfoLogin");
-
-
         productAdapter = new ProductAdapter(productList, getApplicationContext());
         recyclerView.setAdapter(productAdapter);
         productAdapter.setOnItemClickListener(new ProductAdapter.OnItemClickListener() {
@@ -67,8 +65,6 @@ public class CheapActivity extends AppCompatActivity {
                 bundle.putSerializable("keyfeatureList", (Serializable) featureList);
                 intent.putExtra("userInfoLogin", userInfoLogin);
                 intent.putExtras(bundle);
-                System.out.println("FeatureList = " + featureList.size());
-                System.out.println("ProductList = " + productList.size());
                 startActivity(intent);
             }
         });

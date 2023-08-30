@@ -6,7 +6,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -14,21 +13,14 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.app_mobile.Adapter.ProductAdapter;
-import com.example.app_mobile.Adapter.ProductMainAdapter;
 import com.example.app_mobile.Model.Feature;
 import com.example.app_mobile.Model.Product;
 import com.example.app_mobile.Model.User;
 import com.example.app_mobile.R;
-import com.example.app_mobile.Retrofit.ApiService;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class SearchActivity extends AppCompatActivity {
     Toolbar toolbar;
@@ -49,7 +41,7 @@ public class SearchActivity extends AppCompatActivity {
         setControl();
         setEvent();
         ActionToolBar();
-        GetListProductAPI();
+//        getListProductAPI();
 //        getListFeatureAPI();
     }
     private void setEvent() {
@@ -63,33 +55,8 @@ public class SearchActivity extends AppCompatActivity {
         productAdapter = new ProductAdapter(spm,getApplicationContext());
         recyclerView.setAdapter(productAdapter);
     }
-    private void GetListProductAPI(){
-        ApiService.apiService.productListData().enqueue(new Callback<List<Product>>() {
-            @Override
-            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
-                productList = response.body();
-                List<Product> searchList = new ArrayList<>();
-                searchList.addAll(productList);
-            }
 
-            @Override
-            public void onFailure(Call<List<Product>> call, Throwable t) {
-
-            }
-        });
-    }
     public List<Product> searchProduct(String keyword) {
-        ApiService.apiService.productListData().enqueue(new Callback<List<Product>>() {
-            @Override
-            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
-                productList = response.body();
-            }
-            @Override
-            public void onFailure(Call<List<Product>> call, Throwable t) {
-                Toast.makeText(SearchActivity.this, "Call API EROR", Toast.LENGTH_SHORT).show();
-
-            }
-        });
         List<Product> result = new ArrayList<>();
         for (Product product : productList) {
             if (product.getProductName().toLowerCase().contains(keyword.toLowerCase())) {
@@ -98,7 +65,6 @@ public class SearchActivity extends AppCompatActivity {
         }
         return result;
     }
-
     private void setControl() {
 
         edtsearch = findViewById(R.id.edtsearch);

@@ -35,8 +35,9 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,6 +56,7 @@ public class HomeActivity extends AppCompatActivity {
     ListView listViewhome;
     List<Product> spm = new ArrayList();
     ProductMainAdapter productMainAdapter;
+    List<Product> productSaleList = new ArrayList<>();
     List<Product> product_cheap_List = new ArrayList<>();
     List<Product> produc_average_List = new ArrayList<>();
     List<Product> product_expensive_List = new ArrayList<>();
@@ -107,13 +109,14 @@ public class HomeActivity extends AppCompatActivity {
                     else if (product.getCateId() == 2) produc_average_List.add(product);
                     else if (product.getCateId() == 3) product_expensive_List.add(product);
                 }
-                Random random = new Random(); // Đối tượng Random để sinh số ngẫu nhiên
-
-                while (spm.size() < 6 && !productsListTmp.isEmpty()) { // Lặp cho đến khi đủ 6 mục hoặc hết danh sách ban đầu
-                    int randomIndex = random.nextInt(productsListTmp.size()); // Lấy số ngẫu nhiên trong khoảng từ 0 đến độ dài của danh sách
-                    Product randomItem = productsListTmp.get(randomIndex); // Lấy mục tương ứng từ danh sách ban đầu
-                    spm.add(randomItem); // Thêm vào danh sách mới
-                    productsListTmp.remove(randomIndex); // Loại bỏ khỏi danh sách ban đầu để tránh chọn trùng lặp
+                Collections.sort(productsListTmp, new Comparator<Product>() {
+                    @Override
+                    public int compare(Product p1, Product p2) {
+                        return p2.getProductCreateDate().compareTo(p1.getProductCreateDate());
+                    }
+                });
+                for (int i=0; i<6; i++){
+                    spm.add(productsListTmp.get(i));
                 }
                 productMainAdapter = new ProductMainAdapter(getApplicationContext(), spm);
                 recyclerViewHome.setAdapter(productMainAdapter);
@@ -127,7 +130,7 @@ public class HomeActivity extends AppCompatActivity {
                         bundle.putSerializable("keyfeatureList", (Serializable) featureList);
                         intent.putExtra("userInfoLogin", userInfoLogin);
                         intent.putExtras(bundle);
-                        getApplicationContext().startActivity(intent);
+                        startActivity(intent);
                     }
                 });
                 productMainAdapter.notifyDataSetChanged();
@@ -144,10 +147,9 @@ public class HomeActivity extends AppCompatActivity {
 
     private void ActionViewFlipper() {
         List<String> mangquangcao = new ArrayList<>();
-        mangquangcao.add("http://mauweb.monamedia.net/thegioididong/wp-content/uploads/2017/12/banner-Le-hoi-phu-kien-800-300.png");
-        mangquangcao.add("https://cdn1.hoanghamobile.com/tin-tuc/wp-content/uploads/2020/07/banner-trang-tin-sale.jpg");
+        mangquangcao.add("https://images.fpt.shop/unsafe/filters:quality(5)/fptshop.com.vn/uploads/images/2015/Tin-Tuc/a11.png");
+        mangquangcao.add("https://cdn.tgdd.vn/Files/2020/06/11/1262208/sale_800x450.jpg");
         mangquangcao.add("http://mauweb.monamedia.net/thegioididong/wp-content/uploads/2017/12/banner-HC-Tra-Gop-800-300.png");
-        mangquangcao.add("http://mauweb.monamedia.net/thegioididong/wp-content/uploads/2017/12/banner-big-ky-nguyen-800-300.jpg");
         for (int i = 0; i < mangquangcao.size(); i++) {
             ImageView imageView = new ImageView(getApplicationContext());
             Glide.with(getApplicationContext()).load(mangquangcao.get(i)).into(imageView);
@@ -224,6 +226,14 @@ public class HomeActivity extends AppCompatActivity {
                     case R.id.mn_logOut:
                         Intent logout = new Intent(getApplicationContext(),Login.class);
                         startActivity(logout);
+                        break;
+                    case R.id.mn_productSale:
+                        bundle.putSerializable("productSaleList", (Serializable) productSaleList);
+                        bundle.putSerializable("keyfeatureList", (Serializable) featureList);
+                        Intent productSale = new Intent(getApplicationContext(), SaleProductActivity.class);
+                        productSale.putExtras(bundle);
+                        productSale.putExtra("userInfoLogin", userInfoLogin);
+                        startActivity(productSale);
                         break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);

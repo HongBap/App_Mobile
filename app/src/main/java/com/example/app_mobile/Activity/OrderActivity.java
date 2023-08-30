@@ -24,7 +24,7 @@ import java.util.List;
 public class OrderActivity extends AppCompatActivity {
     ListView lvDanhSach;
     OrderAdapter adapter;
-    ImageView ivPreviousOder;
+    ImageView ivPreviousOder,ivchart;
     User userInfoLogin;
     Spinner spinnerFilterOrder;
     List<Order> orderList = new ArrayList<>();
@@ -101,11 +101,22 @@ public class OrderActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+        ivchart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("orderList", (Serializable) orderList);
+                Intent internChart = new Intent(getApplicationContext(), ChartActivity.class);
+                internChart.putExtras(bundle);
+                startActivity(internChart);
+            }
+        });
     }
     private void setControl() {
         lvDanhSach = findViewById(R.id.lvDanhSach);
         spinnerFilterOrder = findViewById(R.id.spinnerFilterOrder);
         ivPreviousOder = findViewById(R.id.ivPreviousOder);
+        ivchart = findViewById(R.id.ivchart);
     }
 
 }

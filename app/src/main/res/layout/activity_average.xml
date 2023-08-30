@@ -10,8 +10,9 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        app:title="Average Product"
-        android:background="@color/orange"
+        app:title="@string/averageProduct"
+        app:titleTextColor="@color/orange"
+        android:background="@drawable/background_toolbar"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">

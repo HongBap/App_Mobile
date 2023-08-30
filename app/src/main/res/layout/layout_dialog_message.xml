@@ -2,19 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_white_corner_16"
+    android:background="@drawable/input_login"
     android:layout_margin="16dp"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/orange"
+        android:gravity="center"
         android:padding="12dp"
         android:text="Notification"
-        android:gravity="center"
-        android:background="@color/orange"
+        android:textColor="@color/white"
         android:textSize="20sp"
-        android:textColor="@color/black"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:text="Incorrect account or password!"
-            android:textSize="15sp" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -44,9 +44,16 @@
             android:id="@+id/btnDialogOke"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/input_button"
             android:text="Agree"
+            android:textSize="18sp"
+            android:paddingStart="20sp"
+            android:paddingEnd="20sp"
+            android:paddingTop="10sp"
+            android:paddingBottom="10sp"
+            android:textStyle="bold"
             android:layout_gravity="center"
-            android:background="@color/orange" />
+            android:textColor="@color/orange" />
 
     </LinearLayout>
 

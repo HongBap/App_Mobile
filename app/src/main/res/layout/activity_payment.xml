@@ -4,7 +4,7 @@
     android:id="@+id/fragment_payment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/beige">
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +16,10 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/PAYMENT"
-            android:textSize="30sp"
+            android:background="@drawable/background_toolbar"
+            android:textSize="28sp"
+            android:padding="5sp"
+            android:textColor="@color/orange"
             android:textStyle="bold" />
 
         <!--        set border-->
@@ -46,26 +49,31 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:text="@string/Deliveryaddress"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/tvUsername"
                 android:layout_width="wrap_content"
+                android:layout_marginTop="10sp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
                 android:text="Nguyễn Anh Hào"
                 android:layout_marginLeft="30dp"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textColor="@color/orange"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/edtPhoneNumber"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:textSize="18sp"
+                android:layout_marginTop="10sp"
+                android:textSize="16sp"
+                android:textColorHint="@color/orange"
+                android:inputType="number"
+                android:layout_marginRight="30dp"
                 android:hint="Phone Number" />
 
             <EditText
@@ -73,16 +81,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:textSize="18sp"
-                android:layout_marginTop="4dp"
+                android:textSize="16sp"
+                android:textColorHint="@color/orange"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="30dp"
                 android:hint="Address" />
         </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/background_info_user"
+        android:orientation="vertical"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
@@ -112,12 +129,16 @@
                 android:id="@+id/rbPaymentOnDelivery"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
+                android:textSize="16sp"
+                android:textColor="@color/orange"
                 android:text="@string/Paymentondelivery" />
 
             <RadioButton
                 android:id="@+id/rbPaymentWithCard"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
+                android:textColor="@color/orange"
+                android:textSize="16sp"
                 android:text="@string/VisaCredit" />
         </RadioGroup>
 
@@ -133,7 +154,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
                 android:hint="Coupon"
-                android:textSize="14sp" />
+                android:textColorHint="@color/orange"
+                android:textSize="16sp" />
 
             <ImageView
                 android:id="@+id/ivRefreshCoupon"
@@ -145,7 +167,16 @@
                 android:src="@drawable/baseline_wifi_protected_setup_24" />
 
         </LinearLayout>
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/background_info_user"
+        android:orientation="vertical"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -157,7 +188,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:orientation="horizontal">
 
@@ -182,7 +213,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="7dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -190,6 +221,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="start"
                     android:text="@string/Price"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -198,6 +230,8 @@
                     android:layout_height="match_parent"
                     android:gravity="end"
                     android:paddingRight="20dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/orange"
                     android:text="100.00$"
                     android:textStyle="bold" />
 
@@ -209,7 +243,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="7dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -217,6 +251,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="left"
                     android:text="Discount"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -224,7 +259,9 @@
                     android:layout_width="170dp"
                     android:layout_height="match_parent"
                     android:gravity="end"
+                    android:textSize="16sp"
                     android:paddingRight="20dp"
+                    android:textColor="@color/orange"
                     android:text="-0.00$"
                     android:textStyle="bold" />
 
@@ -236,13 +273,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="7dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:gravity="left"
+                    android:textSize="16sp"
                     android:text="Delivery fee"
                     android:textStyle="bold" />
 
@@ -252,6 +290,8 @@
                     android:layout_height="match_parent"
                     android:gravity="end"
                     android:paddingRight="20dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/orange"
                     android:text="+2.00$"
                     android:textStyle="bold" />
 
@@ -263,7 +303,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="7dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -271,6 +311,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="left"
                     android:text="Total price (include VAT)"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -280,33 +321,45 @@
                     android:gravity="end"
                     android:paddingRight="20dp"
                     android:text="97.00$"
+                    android:textSize="16sp"
+                    android:textColor="@color/orange"
                     android:textStyle="bold" />
             </LinearLayout>
 
         </LinearLayout>
+    </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10sp"
+            android:layout_marginBottom="10dp"
             android:gravity="center">
 
             <Button
                 android:id="@+id/btnClose"
-                android:layout_width="120dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:backgroundTint="#000000"
-                android:text="close"
-                android:textColor="#ffffff" />
+                android:background="@drawable/input_button"
+                android:layout_marginRight="20sp"
+                android:text="Close"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:textColor="@color/orange" />
 
             <Button
                 android:id="@+id/btnConfirm"
-                android:layout_width="120dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#FF5722"
+                android:background="@drawable/input_button"
+                android:layout_marginLeft="20sp"
                 android:text="Confirm"
-                android:textColor="#000000" />
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:textColor="@color/orange" />
         </LinearLayout>
     </LinearLayout>
 
